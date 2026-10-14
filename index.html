@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern, neon glassmorphic Tic-Tac-Toe web game featuring smart AI with Minimax algorithm, 2-player mode, sound effects, and confetti celebrations.">
+  <title>Neon Tic-Tac-Toe | Play Solo or 2-Player</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Glow Orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <!-- Confetti Canvas for Victory Celebrations -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <main class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-badges">
+        <span class="badge live-badge">✨ Web Edition</span>
+        <button id="sound-toggle" class="icon-btn" aria-label="Toggle Sound" title="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+      </div>
+      <h1 class="game-title">
+        <span class="title-x">TIC</span>
+        <span class="title-divider">•</span>
+        <span class="title-o">TAC</span>
+        <span class="title-divider">•</span>
+        <span class="title-toe">TOE</span>
+      </h1>
+      <p class="game-subtitle">Outsmart the unbeatable AI or challenge a friend</p>
+    </header>
+
+    <!-- Controls & Game Mode Selector -->
+    <section class="controls-panel">
+      <div class="mode-selector" role="radiogroup" aria-label="Game Mode">
+        <button id="mode-pve" class="mode-btn active" data-mode="pve">
+          <span class="mode-icon">🤖</span>
+          <span>Vs AI</span>
+        </button>
+        <button id="mode-pvp" class="mode-btn" data-mode="pvp">
+          <span class="mode-icon">👥</span>
+          <span>2 Players</span>
+        </button>
+      </div>
+
+      <!-- AI Difficulty Bar (Only shown in Vs AI mode) -->
+      <div id="ai-difficulty-container" class="difficulty-wrapper">
+        <span class="difficulty-label">Difficulty:</span>
+        <div class="difficulty-pill-group">
+          <button id="diff-easy" class="diff-btn" data-diff="easy">Casual</button>
+          <button id="diff-hard" class="diff-btn active" data-diff="hard">Unbeatable</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scoreboard -->
+    <section class="scoreboard" aria-label="Game Scores">
+      <div class="score-card player-x-card active-turn" id="card-x">
+        <div class="score-avatar x-avatar">X</div>
+        <div class="score-info">
+          <span class="player-name" id="name-x">Player X</span>
+          <span class="score-value" id="score-x">0</span>
+        </div>
+      </div>
+
+      <div class="score-card tie-card" id="card-tie">
+        <div class="score-avatar tie-avatar">⚡</div>
+        <div class="score-info">
+          <span class="player-name">Ties</span>
+          <span class="score-value" id="score-ties">0</span>
+        </div>
+      </div>
+
+      <div class="score-card player-o-card" id="card-o">
+        <div class="score-avatar o-avatar">O</div>
+        <div class="score-info">
+          <span class="player-name" id="name-o">AI Bot</span>
+          <span class="score-value" id="score-o">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Turn Status Banner -->
+    <div class="status-banner" id="status-banner">
+      <span class="status-icon" id="status-icon">🎮</span>
+      <span class="status-text" id="status-text">Player X's Turn</span>
+    </div>
+
+    <!-- 3x3 Game Board Grid -->
+    <section class="board-wrapper">
+      <div class="board" id="game-board" role="grid" aria-label="Tic Tac Toe Board">
+        <button class="cell" data-index="0" id="cell-0" role="gridcell" aria-label="Cell 1"></button>
+        <button class="cell" data-index="1" id="cell-1" role="gridcell" aria-label="Cell 2"></button>
+        <button class="cell" data-index="2" id="cell-2" role="gridcell" aria-label="Cell 3"></button>
+        <button class="cell" data-index="3" id="cell-3" role="gridcell" aria-label="Cell 4"></button>
+        <button class="cell" data-index="4" id="cell-4" role="gridcell" aria-label="Cell 5"></button>
+        <button class="cell" data-index="5" id="cell-5" role="gridcell" aria-label="Cell 6"></button>
+        <button class="cell" data-index="6" id="cell-6" role="gridcell" aria-label="Cell 7"></button>
+        <button class="cell" data-index="7" id="cell-7" role="gridcell" aria-label="Cell 8"></button>
+        <button class="cell" data-index="8" id="cell-8" role="gridcell" aria-label="Cell 9"></button>
+      </div>
+    </section>
+
+    <!-- Bottom Actions -->
+    <footer class="game-actions">
+      <button id="btn-restart" class="action-btn restart-btn">
+        <span class="btn-icon">🔄</span>
+        <span>New Round</span>
+      </button>
+      <button id="btn-reset-score" class="action-btn reset-btn">
+        <span class="btn-icon">🗑️</span>
+        <span>Reset Scores</span>
+      </button>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
